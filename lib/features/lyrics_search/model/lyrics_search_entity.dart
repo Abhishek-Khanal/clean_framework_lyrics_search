@@ -16,7 +16,7 @@ class LyricsSearchEntity extends Entity {
         super(errors: errors);
 
   @override
-  List<Object> get props => [artist, title, errors];
+  List<Object> get props => [artist, title, lyrics];
 
   @override
   merge({errors, String? artist, String? title, String? lyrics}) {

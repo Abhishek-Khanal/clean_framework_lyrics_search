@@ -18,7 +18,7 @@ class LyricsSearchBloc extends Bloc {
   final titlePipe = Pipe<String>();
   final searchPipe = Pipe<LyricsSearchEvent>(canSendDuplicateData: true);
 
-  LyricsSearchBloc({LyricsSearchService? loginService}) {
+  LyricsSearchBloc({LyricsSearchUseCase? lyricsSearchUseCase, LyricsSearchResultUseCase? lyricsSearchResultUseCase}) {
     _lyricsSearchUseCase = LyricsSearchUseCase((viewModel) =>
         lyricsSearchViewModelPipe.send(viewModel as LyricsSearchViewModel));
     lyricsSearchViewModelPipe.whenListenedDo(() {
@@ -51,6 +51,7 @@ class LyricsSearchBloc extends Bloc {
   @override
   void dispose() {
     lyricsSearchViewModelPipe.dispose();
+    lyricsSearchResultViewModelPipe.dispose();
     artistPipe.dispose();
     titlePipe.dispose();
     searchPipe.dispose();

@@ -15,5 +15,5 @@ class LyricsSearchResultViewModel extends ViewModel {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [lyrics,serviceStatus];
+  List<Object?> get props => [artist,title,lyrics,serviceStatus];
 }

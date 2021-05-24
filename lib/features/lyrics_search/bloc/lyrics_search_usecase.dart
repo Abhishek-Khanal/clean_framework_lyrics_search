@@ -5,7 +5,6 @@ import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_
 import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_viewmodel.dart';
 import '../../../locator.dart';
 
-
 class LyricsSearchUseCase extends UseCase {
   Function(ViewModel) _lyricsSearchViewModelCallBack;
   RepositoryScope? _scope;
@@ -29,12 +28,13 @@ class LyricsSearchUseCase extends UseCase {
   void search() async {
     final entity = ExampleLocator().repository.get<LyricsSearchEntity>(_scope!);
     if (entity.artist == '' || entity.title == '') {
-      _lyricsSearchViewModelCallBack(buildViewModelForLocalUpdateWithError(entity));
+      _lyricsSearchViewModelCallBack(
+          buildViewModelForLocalUpdateWithError(entity));
     } else {
-      _lyricsSearchViewModelCallBack(buildViewModelForLocalUpdateWithSuccess(entity));
+      _lyricsSearchViewModelCallBack(
+          buildViewModelForLocalUpdateWithSuccess(entity));
     }
   }
-
 
   void updateArtist(String artist) async {
     final entity = ExampleLocator().repository.get<LyricsSearchEntity>(_scope!);
@@ -61,14 +61,16 @@ class LyricsSearchUseCase extends UseCase {
       LyricsSearchEntity entity) {
     if (entity.hasErrors()) {
       return LyricsSearchViewModel(
-          artist: entity.artist,
-          title: entity.title,
-          serviceStatus: ServiceStatus.fail);
+        artist: entity.artist,
+        title: entity.title,
+        dataStatus: DataStatus.invalid,
+      );
     } else {
       return LyricsSearchViewModel(
-          artist: entity.artist,
-          title: entity.title,
-          serviceStatus: ServiceStatus.success);
+        artist: entity.artist,
+        title: entity.title,
+        dataStatus: DataStatus.valid,
+      );
     }
   }
 
@@ -79,13 +81,13 @@ class LyricsSearchUseCase extends UseCase {
       title: entity.title,
     );
   }
+
   LyricsSearchViewModel buildViewModelForLocalUpdateWithSuccess(
       LyricsSearchEntity entity) {
     return LyricsSearchViewModel(
-      artist: entity.artist,
-      title: entity.title,
-      dataStatus: DataStatus.valid
-    );
+        artist: entity.artist,
+        title: entity.title,
+        dataStatus: DataStatus.valid);
   }
 
   LyricsSearchViewModel buildViewModelForLocalUpdateWithError(
