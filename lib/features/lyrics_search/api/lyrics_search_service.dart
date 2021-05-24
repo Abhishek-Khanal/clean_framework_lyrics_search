@@ -5,13 +5,15 @@ import 'package:clean_framework_task/features/lyrics_search/api/lyrics_search_se
 
 import '../../../locator.dart';
 
-class LyricsSearchService
-    extends EitherService<LyricsSearchServiceRequestModel, LyricsSearchServiceResponseModel> {
+class LyricsSearchService extends EitherService<LyricsSearchServiceRequestModel,
+    LyricsSearchServiceResponseModel> {
   LyricsSearchService()
       : super(
-      method: RestMethod.get,
-      restApi: ExampleLocator().api,
-      path: '/Coldplay/Adventure of a Lifetime');
+          method: RestMethod.get,
+          restApi: ExampleLocator().api,
+          //path: '{artist}/{title}', Keep getting null don't know why
+          path: 'Coldplay/Adventure of a Lifetime',
+        );
 
   @override
   LyricsSearchServiceResponseModel parseResponse(
@@ -20,8 +22,8 @@ class LyricsSearchService
   }
 
   @override
-  ServiceFailure onError(RestResponseType responseType,
-      Map<String, dynamic> jsonResponse) {
+  ServiceFailure onError(
+      RestResponseType responseType, Map<String, dynamic> jsonResponse) {
     return GeneralServiceFailure();
   }
 }

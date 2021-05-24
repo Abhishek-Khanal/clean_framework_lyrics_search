@@ -1,4 +1,5 @@
 import 'package:clean_framework/clean_framework.dart';
+import 'package:clean_framework_task/core/enum.dart';
 import 'package:clean_framework_task/features/lyrics_search/bloc/lyrics_search_bloc.dart';
 import 'package:clean_framework_task/features/lyrics_search/bloc/lyrics_search_event.dart';
 import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_viewmodel.dart';
@@ -71,7 +72,7 @@ class LyricsSearchPresenter extends Presenter<LyricsSearchBloc,
         actions: <Widget>[
           TextButton(
             onPressed: () {
-              CFRouterScope.of(context).pop();
+              Navigator.of(context).pop();
             },
             child: Text('OK'),
           )

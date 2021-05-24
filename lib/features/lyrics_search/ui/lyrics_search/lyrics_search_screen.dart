@@ -56,11 +56,18 @@ class LyricsSearchScreen extends Screen {
               ),
             ),
             SizedBox(height: media.width * .03),
+            Text(
+              'Note: Api is buggy. Please enter Coldplay and Adventure of a Lifetime to test.',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.grey[400],
+              ),
+            ),
             _textFormField(Key('artist_key'), 'Artist',
-                onChangeArtist, TextInputType.emailAddress),
+                onChangeArtist, TextInputType.emailAddress,Icons.person_outline),
             SizedBox(height: media.width * .01),
             _textFormField(Key('title_key'), 'Title', onChangeTitle,
-                TextInputType.visiblePassword),
+                TextInputType.visiblePassword,Icons.music_note_outlined),
             SizedBox(height: media.width * .02),
             ElevatedButton(
               key: Key('search_button_key'),
@@ -77,13 +84,13 @@ class LyricsSearchScreen extends Screen {
   }
 
   Widget _textFormField(Key key, String hintText, Function? onChangeTextField,
-      TextInputType textInputType) {
+      TextInputType textInputType, IconData iconData) {
     return TextFormField(
       key: key,
       keyboardType: textInputType,
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
-        prefixIcon: Icon(Icons.person),
+        prefixIcon: Icon(iconData),
         filled: true,
         hintText: hintText,
         contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),

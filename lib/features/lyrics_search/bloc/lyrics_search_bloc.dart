@@ -10,33 +10,30 @@ class LyricsSearchBloc extends Bloc {
   late LyricsSearchUseCase _lyricsSearchUseCase;
   late LyricsSearchResultUseCase _lyricsSearchResultUseCase;
 
-  final lyricsSearchViewModelPipe = Pipe<LyricsSearchViewModel>();
-  final lyricsSearchResultViewModelPipe = Pipe<LyricsSearchResultViewModel>();
+  final lyricsSearchViewModelPipe =
+      Pipe<LyricsSearchViewModel>(canSendDuplicateData: true);
+  final lyricsSearchResultViewModelPipe =
+      Pipe<LyricsSearchResultViewModel>(canSendDuplicateData: true);
   final artistPipe = Pipe<String>();
   final titlePipe = Pipe<String>();
   final searchPipe = Pipe<LyricsSearchEvent>(canSendDuplicateData: true);
-  final fetchLyricsPipe = Pipe<LyricsSearchEvent>(canSendDuplicateData: true);
 
   LyricsSearchBloc({LyricsSearchService? loginService}) {
-    _lyricsSearchUseCase = LyricsSearchUseCase(
-      (viewModel) =>
-          lyricsSearchViewModelPipe.send(viewModel as LyricsSearchViewModel),
-    );
+    _lyricsSearchUseCase = LyricsSearchUseCase((viewModel) =>
+        lyricsSearchViewModelPipe.send(viewModel as LyricsSearchViewModel));
     lyricsSearchViewModelPipe.whenListenedDo(() {
       _lyricsSearchUseCase.create();
     });
     _lyricsSearchResultUseCase = LyricsSearchResultUseCase(
-      (viewModel) =>
-          lyricsSearchViewModelPipe.send(viewModel as LyricsSearchViewModel),
+      (viewModel) => lyricsSearchResultViewModelPipe
+          .send(viewModel as LyricsSearchResultViewModel),
     );
-    lyricsSearchViewModelPipe.whenListenedDo(() {
+    lyricsSearchResultViewModelPipe.whenListenedDo(() {
       _lyricsSearchResultUseCase.create();
     });
     artistPipe.receive.listen(artistInputHandler);
     titlePipe.receive.listen(titleInputHandler);
     searchPipe.receive.listen(searchHandler);
-    fetchLyricsPipe.receive.listen(fetchLyrics);
-
   }
 
   void artistInputHandler(String artist) {
@@ -49,10 +46,6 @@ class LyricsSearchBloc extends Bloc {
 
   void searchHandler(event) {
     _lyricsSearchUseCase.search();
-  }
-
-  void fetchLyrics(event) {
-    _lyricsSearchResultUseCase.fetchLyrics();
   }
 
   @override

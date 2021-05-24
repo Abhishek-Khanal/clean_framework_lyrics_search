@@ -1,8 +1,8 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
+import 'package:clean_framework_task/core/enum.dart';
 import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_entity.dart';
 import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_result_viewmodel.dart';
-import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_viewmodel.dart';
 import '../../../locator.dart';
 import 'lyrics_search_service_adapter.dart';
 
@@ -15,7 +15,7 @@ class LyricsSearchResultUseCase extends UseCase {
       : _lyricsSearchResultViewModelCallBack =
             _lyricsSearchResultViewModelCallBack;
 
-  void create() {
+  void create() async {
     _scope = ExampleLocator().repository.containsScope<LyricsSearchEntity>();
     if (_scope == null) {
       final newLyricsSearchEntity = LyricsSearchEntity();
@@ -24,9 +24,6 @@ class LyricsSearchResultUseCase extends UseCase {
     } else {
       _scope!.subscription = _notifySubscribers;
     }
-  }
-
-  fetchLyrics() async {
     await ExampleLocator()
         .repository
         .runServiceAdapter(_scope!, LyricsSearchServiceAdapter());
@@ -48,11 +45,17 @@ class LyricsSearchResultUseCase extends UseCase {
       LyricsSearchEntity entity) {
     if (entity.hasErrors()) {
       return LyricsSearchResultViewModel(
-          lyrics: "", serviceStatus: ServiceStatus.fail);
+        lyrics: "",
+        serviceStatus: ServiceStatus.fail,
+        artist: entity.artist,
+        title: entity.title,
+      );
     } else {
       return LyricsSearchResultViewModel(
         lyrics: entity.lyrics,
         serviceStatus: ServiceStatus.success,
+        artist: entity.artist,
+        title: entity.title,
       );
     }
   }

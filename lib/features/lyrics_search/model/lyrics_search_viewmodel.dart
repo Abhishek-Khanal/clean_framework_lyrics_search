@@ -1,4 +1,5 @@
 import 'package:clean_framework/clean_framework.dart';
+import 'package:clean_framework_task/core/enum.dart';
 
 class LyricsSearchViewModel extends ViewModel{
   final String? artist;
@@ -13,5 +14,3 @@ class LyricsSearchViewModel extends ViewModel{
   List<Object?> get props => [artist, title, serviceStatus, dataStatus];
 }
 
-enum ServiceStatus { success, fail, unknown,busy }
-enum DataStatus { valid, invalid, unknown }

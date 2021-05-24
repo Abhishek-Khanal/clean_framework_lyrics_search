@@ -1,9 +1,10 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
+import 'package:clean_framework_task/core/enum.dart';
 import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_entity.dart';
 import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_viewmodel.dart';
 import '../../../locator.dart';
-import 'lyrics_search_service_adapter.dart';
+
 
 class LyricsSearchUseCase extends UseCase {
   Function(ViewModel) _lyricsSearchViewModelCallBack;
