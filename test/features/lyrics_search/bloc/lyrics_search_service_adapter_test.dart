@@ -29,7 +29,7 @@ void main() {
       expect(entity.lyrics, tInitEntity.lyrics);
     });
     test(
-        'should received a DepositCheckEntity and return DepositCheckServiceRequestModel',
+        'should received a LyricsSearchEntity and return LyricsSearchServiceRequestModel',
         () async {
       final requestModel = LyricsSearchServiceAdapter().createRequest(tEntity);
       expect(requestModel.artist, tRequestModel.artist);

@@ -47,7 +47,7 @@ class LyricsSearchScreen extends Screen {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(10, 12, 10, 12),
                 child: Text(
-                  'Simple api to retrieve  the lyrics of the song',
+                  'Simple api to retrieve the lyrics of the song',
                   style: TextStyle(
                     fontSize: 20,
                     color: Colors.black54,
