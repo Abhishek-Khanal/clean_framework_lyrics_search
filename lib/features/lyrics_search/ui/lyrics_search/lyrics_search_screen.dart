@@ -57,7 +57,7 @@ class LyricsSearchScreen extends Screen {
             ),
             SizedBox(height: media.width * .03),
             Text(
-              'Note: Api is buggy. Please enter Coldplay and Adventure of a Lifetime to test.',
+              'Note:Got null passing from request model as param. Used static value.',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.grey[400],

@@ -69,7 +69,7 @@ class LyricsSearchUseCase extends UseCase {
       return LyricsSearchViewModel(
         artist: entity.artist,
         title: entity.title,
-        dataStatus: DataStatus.valid,
+        dataStatus: DataStatus.unknown,
       );
     }
   }

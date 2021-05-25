@@ -11,6 +11,8 @@ class LyricsSearchServiceAdapter extends ServiceAdapter<LyricsSearchEntity,
 
   @override
   LyricsSearchServiceRequestModel createRequest(LyricsSearchEntity entity) {
+    print(entity.title);
+    print(entity.artist);
     return LyricsSearchServiceRequestModel(
         title: entity.title, artist: entity.artist);
   }

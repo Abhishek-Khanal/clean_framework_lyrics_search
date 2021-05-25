@@ -11,7 +11,7 @@ class LyricsSearchService extends EitherService<LyricsSearchServiceRequestModel,
       : super(
           method: RestMethod.get,
           restApi: ExampleLocator().api,
-          //path: '{artist}/{title}', Keep getting null don't know why
+          //path: '{artist}/{title}',Keep getting null don't know why
           path: 'Coldplay/Adventure of a Lifetime',
         );
 
