@@ -1,5 +1,4 @@
 import 'package:clean_framework/clean_framework.dart';
-import 'package:clean_framework_task/features/lyrics_search/api/lyrics_search_service.dart';
 import 'package:clean_framework_task/features/lyrics_search/bloc/lyrics_search_event.dart';
 import 'package:clean_framework_task/features/lyrics_search/bloc/lyrics_search_result_usecase.dart';
 import 'package:clean_framework_task/features/lyrics_search/bloc/lyrics_search_usecase.dart';

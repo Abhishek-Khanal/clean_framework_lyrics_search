@@ -31,9 +31,14 @@ dependencies:
   clean_framework: ^0.4.1
 
 dev_dependencies:
+  integration_test:
+    sdk: flutter
   flutter_test:
     sdk: flutter
-  mockito: ^5.0.8
+  flutter_driver:
+    sdk: flutter
+  mockito:
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

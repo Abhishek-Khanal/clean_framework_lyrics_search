@@ -20,8 +20,8 @@ void main() {
   });
 
   test('should perform a GET request', () async {
-    final eitherResponce = await service.request();
+    final eitherResponse = await service.request();
 
-    expect(eitherResponce.isRight, isTrue);
+    expect(eitherResponse.isRight, isTrue);
   });
 }

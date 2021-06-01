@@ -1,21 +1,16 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework_task/features/lyrics_search/model/lyrics_search_viewmodel.dart';
+import 'package:clean_framework_task/features/lyrics_search/ui/lyrics_search/lyrics_search_actions.dart';
 import 'package:flutter/material.dart';
 
 class LyricsSearchScreen extends Screen {
   final LyricsSearchViewModel? viewModel;
-  final Function? onChangeArtist;
-  final Function? onChangeTitle;
-  final Function? onTapSearch;
+  final LyricsSearchActions actions;
 
   LyricsSearchScreen({
-    this.onChangeArtist,
-    this.onChangeTitle,
-    this.onTapSearch,
-    this.viewModel,
+    required this.viewModel,
+    required this.actions,
   });
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +33,7 @@ class LyricsSearchScreen extends Screen {
                       fontWeight: FontWeight.w700,
                       fontSize: 32,
                       color: Colors.lightGreen),
-                  key: Key('signInText'),
+                  key: Key('searchLyricsText'),
                 ),
               ),
             ),
@@ -63,18 +58,18 @@ class LyricsSearchScreen extends Screen {
                 color: Colors.grey[400],
               ),
             ),
-            _textFormField(Key('artist_key'), 'Artist',
-                onChangeArtist, TextInputType.emailAddress,Icons.person_outline),
+            _textFormField(Key('artist_key'), 'Artist', actions.onChangeArtist,
+                TextInputType.emailAddress, Icons.person_outline),
             SizedBox(height: media.width * .01),
-            _textFormField(Key('title_key'), 'Title', onChangeTitle,
-                TextInputType.visiblePassword,Icons.music_note_outlined),
+            _textFormField(Key('title_key'), 'Title', actions.onChangeTitle,
+                TextInputType.visiblePassword, Icons.music_note_outlined),
             SizedBox(height: media.width * .02),
             ElevatedButton(
               key: Key('search_button_key'),
               style: ElevatedButton.styleFrom(
                 primary: Colors.lightGreen,
               ),
-              onPressed: onTapSearch as void Function()?,
+              onPressed: actions.onTapSearch,
               child: Text('Search', style: TextStyle(color: Colors.white)),
             ),
           ],
@@ -106,4 +101,3 @@ class LyricsSearchScreen extends Screen {
     );
   }
 }
-
